@@ -1,11 +1,21 @@
 import streamlit as st
 import pickle
+import gdown
+
+
+file_id = "1ssbYGj7afMLptc9PKGNKCSnmY7JZXKPn"
+url = f"https://drive.google.com/uc?export=download&id={file_id}"
+output = "best_model.pkl"
+
+
+gdown.download(url, output, quiet=False)
+
 
 def load_pickle(filepath):
     with open(filepath, "rb") as file:
         return pickle.load(file)
 
-model = load_pickle("C:/Users/ASUS/OneDrive/Desktop/Sentiment_Analysis_/best_model.pkl")
+model = load_pickle(output)
 vectorizer = load_pickle("C:/Users/ASUS/OneDrive/Desktop/Sentiment_Analysis_/tfidf_vectorizer.pkl")
 le = load_pickle("C:/Users/ASUS/OneDrive/Desktop/Sentiment_Analysis_/label_encoder.pkl")
 
